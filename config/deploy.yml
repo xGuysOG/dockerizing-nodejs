@@ -2,7 +2,7 @@
 service: addressbook
 
 # Name of the container image.
-image: xguysog/dockerizing-nodejs
+image: xguysog/dockerizing-nodejs/master
 
 # Deploy to these servers.
 servers:
