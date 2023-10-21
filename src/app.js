@@ -9,6 +9,9 @@ const personsRouter = require('./routes/persons');
 
 const app = express();
 
+const healthRouter = require('./routes/health');
+app.use('/up', healthRouter);
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

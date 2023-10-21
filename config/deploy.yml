@@ -2,30 +2,46 @@
 service: addressbook
 
 # Name of the container image.
-image: tomfern/addressbook
+image: xguysog/dockerizing-nodejs
 
 # Deploy to these servers.
 servers:
   - 164.92.196.69
 
+ssh:
+  user: root
+
 # Credentials for your image host.
 registry:
-  # Specify the registry server, if you're not using Docker Hub
-  # server: registry.digitalocean.com / ghcr.io / ...
-  username: my-user
+  server: ghcr.io
+  username: xGuysOG
+  password: 
+    - GHCR_TOKEN
 
-  # Always use an access token rather than real password when possible.
-  password:
-    - KAMAL_REGISTRY_PASSWORD
-
+traefik:
+  options:
+    publish:
+      - 8080:8080
+  args:
+    api.dashboard: true
+    api.insecure: true
 # Inject ENV variables into containers (secrets come from .env).
 # Remember to run `kamal env push` after making changes!
-# env:
-#   clear:
-#     DB_HOST: 192.168.0.2
-#   secret:
-#     - RAILS_MASTER_KEY
-
+ env:
+   clear:
+     DB_HOST: 167.172.172.51
+   secret:
+     - DB_PASSWORD
+accessories:
+  db:
+    image: postgres:14
+    host: 167.172.172.51
+    port: 5432
+    env:
+      secret:
+        - DB_PASSWORD
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
 # Use a different ssh user than root
 # ssh:
 #   user: app
