@@ -6,7 +6,7 @@ image: xguysog/dockerizing-nodejs/master
 
 # Deploy to these servers.
 servers:
-  - 164.92.226.22
+  - 164.92.218.177
 
 ssh:
   user: root
@@ -28,13 +28,13 @@ traefik:
 
 env:
   clear:
-    DB_HOST: 164.92.226.22
+    DB_HOST: 164.92.218.177
   secret:
     - DB_PASSWORD
 accessories:
   db:
     image: postgres:15
-    host: 164.92.226.22
+    host: 164.92.218.177
     port: 5432
     env:
       secret:
