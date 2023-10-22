@@ -6,7 +6,7 @@ image: xguysog/dockerizing-nodejs/master
 
 # Deploy to these servers.
 servers:
-  - 164.92.196.69
+  - 164.92.226.22
 
 ssh:
   user: root
@@ -25,17 +25,16 @@ traefik:
   args:
     api.dashboard: true
     api.insecure: true
-# Inject ENV variables into containers (secrets come from .env).
-# Remember to run `kamal env push` after making changes!
- env:
-   clear:
-     DB_HOST: 167.172.172.51
-   secret:
-     - DB_PASSWORD
+
+env:
+  clear:
+    DB_HOST: 164.92.226.22
+  secret:
+    - DB_PASSWORD
 accessories:
   db:
-    image: postgres:14
-    host: 167.172.172.51
+    image: postgres:15
+    host: 164.92.226.22
     port: 5432
     env:
       secret:
